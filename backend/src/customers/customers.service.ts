@@ -14,6 +14,8 @@ import type {
 import type {
   CreateCustomerModel,
   CustomerModel,
+  CustomersPageModel,
+  PaginationModel,
   UpdateCustomerModel,
 } from "./models/customer.model";
 import {
@@ -29,9 +31,9 @@ export class CustomersService {
     private readonly repository: CustomersRepository,
   ) {}
 
-  findAll(): Promise<CustomerModel[]> {
-    return this.repository.findAll();
-  }
+  findAll(pagination: PaginationModel): Promise<CustomersPageModel> {
+  return this.repository.findAll(pagination);
+}
 
   async findById(id: string): Promise<CustomerModel> {
     const customer = await this.repository.findById(id);
